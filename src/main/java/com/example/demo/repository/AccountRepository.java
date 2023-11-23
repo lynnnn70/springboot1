@@ -2,6 +2,8 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -13,4 +15,9 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
      Optional<Account> findByEmail(String email);
 
      Optional<Account>findByUserAccount(String userAccount);
+
+     Optional<Account>findByPassword(String password);
+
+//     @Query("SELECT a FROM Account a WHERE a.userAccount = :userAccount")
+//     Optional<Account>findByUserAccountCustom(@Param("userAccount") String userAccount);
 }
