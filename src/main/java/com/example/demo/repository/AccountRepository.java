@@ -14,10 +14,9 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     //email是否重複
      Optional<Account> findByEmail(String email);
 
-     Optional<Account>findByUserAccount(String userAccount);
+     Optional<Account> findByUserAccount(String userAccount);
 
-     Optional<Account>findByPassword(String password);
+     Optional<Account> findByPassword(String password);
 
-//     @Query("SELECT a FROM Account a WHERE a.userAccount = :userAccount")
-//     Optional<Account>findByUserAccountCustom(@Param("userAccount") String userAccount);
+     Account getByUserAccount(String userAccount);
 }

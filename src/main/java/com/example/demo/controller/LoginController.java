@@ -2,14 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.CommonResponse;
 import com.example.demo.dto.LoginDTO;
+import com.example.demo.entity.Account;
+import com.example.demo.repository.AccountRepository;
 import com.example.demo.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api")
@@ -33,6 +32,7 @@ public class LoginController {
         CommonResponse response = new CommonResponse("Login Successful");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 
 
 }

@@ -15,14 +15,8 @@ public class TestController {
     @Autowired
     private AccountRepository accountRepository;
     @GetMapping("test")
-    public Optional<Account> test(){
-        Optional<Account> accountOptional = accountRepository.findById(2);
-        if(accountOptional.isPresent()){
-            Account account = accountOptional.get();
-            account.setName("Wilson");
-            accountRepository.save(account);
-        }
-        return accountRepository.findById(2);
+    public Account test(){
 
+        return accountRepository.getByUserAccount("test123");
     }
 }

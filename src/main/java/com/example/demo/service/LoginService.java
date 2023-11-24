@@ -19,7 +19,7 @@ public class LoginService {
     public Optional<Account> login(LoginDTO loginDTO){
         Optional<Account> account = accountRepository.findByUserAccount(loginDTO.getUserAccount());
 
-        if(!checkUserAccount(loginDTO)){
+        if(!checkAccount(loginDTO)){
             return Optional.empty();
         }
 //       if (){
@@ -28,7 +28,19 @@ public class LoginService {
         return account;
     }
 
-    public boolean checkUserAccount(LoginDTO loginDTO){
-       return accountRepository.findByUserAccount(loginDTO.getUserAccount()).isPresent();
+    //用 userAccount(不重複) 拿到整個Account 就可以比對裡面的password
+    public boolean checkAccount(LoginDTO loginDTO){
+        Account userAccount = accountRepository.getByUserAccount(loginDTO.getUserAccount());
+        if(userAccount == null){  // 帳號不存在
+            return false;
+        }
+        String dbPassword = userAccount.getPassword(); // db password
+        String dtoPassword = loginDTO.getPassword();
+        if(dtoPassword.equals(dbPassword)){
+            return true; //login success
+        }
+        return false;  //password fail
     }
+
+
 }
