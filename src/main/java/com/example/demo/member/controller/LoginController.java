@@ -1,9 +1,9 @@
-package com.example.demo.controller;
+package com.example.demo.member.controller;
 
-import com.example.demo.dto.CommonResponse;
-import com.example.demo.dto.LoginDTO;
+import com.example.demo.member.dto.CommonResponse;
+import com.example.demo.member.dto.LoginDTO;
 
-import com.example.demo.service.LoginService;
+import com.example.demo.member.service.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

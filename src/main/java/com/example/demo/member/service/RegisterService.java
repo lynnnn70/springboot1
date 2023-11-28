@@ -1,12 +1,10 @@
-package com.example.demo.service;
+package com.example.demo.member.service;
 
-import com.example.demo.dto.RegisterResult;
-import com.example.demo.entity.Account;
-import com.example.demo.repository.AccountRepository;
+import com.example.demo.member.dto.RegisterResult;
+import com.example.demo.member.entity.Account;
+import com.example.demo.member.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class RegisterService {

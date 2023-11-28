@@ -1,10 +1,10 @@
-package com.example.demo.controller;
+package com.example.demo.member.controller;
 
 
-import com.example.demo.dto.RegisterResponse;
-import com.example.demo.dto.RegisterResult;
-import com.example.demo.entity.Account;
-import com.example.demo.service.RegisterService;
+import com.example.demo.member.dto.RegisterResponse;
+import com.example.demo.member.dto.RegisterResult;
+import com.example.demo.member.entity.Account;
+import com.example.demo.member.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -12,7 +12,7 @@ public class Dept {
     private Integer deptNo;
 
     @Column(name = "DNAME")
-    private String dName;
+    private String deptName;
 
     @Column(name ="LOC")
     private String loc;
@@ -25,12 +25,12 @@ public class Dept {
         this.deptNo = deptNo;
     }
 
-    public String getdName() {
-        return dName;
+    public String getdDeptName() {
+        return deptName;
     }
 
-    public void setdName(String dName) {
-        this.dName = dName;
+    public void setdDeptName(String dName) {
+        this.deptName = dName;
     }
 
     public String getLoc() {
@@ -45,7 +45,7 @@ public class Dept {
     public String toString() {
         final StringBuilder sb = new StringBuilder(super.toString());
         sb.append("{deptNo:").append(deptNo);
-        sb.append(", dName:'").append(dName).append('\'');
+        sb.append(", dName:'").append(deptName).append('\'');
         sb.append(", loc:'").append(loc).append('\'');
         sb.append("}");
         return sb.toString();

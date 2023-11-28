@@ -1,8 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.member.service;
 
-import com.example.demo.dto.LoginDTO;
-import com.example.demo.entity.Account;
-import com.example.demo.repository.AccountRepository;
+import com.example.demo.member.dto.LoginDTO;
+import com.example.demo.member.entity.Account;
+import com.example.demo.member.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

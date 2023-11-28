@@ -1,7 +1,7 @@
-package com.example.demo.controller;
+package com.example.demo.member.controller;
 
-import com.example.demo.entity.Account;
-import com.example.demo.service.ResetPasswordService;
+import com.example.demo.member.entity.Account;
+import com.example.demo.member.service.ResetPasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

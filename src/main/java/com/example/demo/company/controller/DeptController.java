@@ -5,10 +5,7 @@ import com.example.demo.company.entity.Dept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +25,7 @@ public class DeptController {
     //顯示部門列表
     @GetMapping("listAll")
     public ResponseEntity<List<Dept>> listAll(){
-        return new ResponseEntity(deptService.listAllDept(), HttpStatus.OK);
+        return new ResponseEntity<>(deptService.listAll(), HttpStatus.OK);
     }
 
     //用部門編號查單筆
@@ -38,8 +35,21 @@ public class DeptController {
     }
 
     //新增部門
+    @PostMapping("add")
+    public ResponseEntity<Dept> add(@RequestBody Dept dept){
+        return new ResponseEntity<>(deptService.add(dept), HttpStatus.OK);
+    }
 
     //刪除部門
+    @DeleteMapping("delete/{deptNo}")
+    public ResponseEntity<Dept> delete(@PathVariable Integer deptNo){
+        deptService.delete(deptNo);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
     //修改部門資料
+    @PutMapping("update")
+    public ResponseEntity<?> update(@RequestBody Dept dept){
+        return new ResponseEntity<>(deptService.update(dept),HttpStatus.OK);
+    }
 }
