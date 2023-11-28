@@ -25,11 +25,11 @@ public class Dept {
         this.deptNo = deptNo;
     }
 
-    public String getdDeptName() {
+    public String getDeptName() {
         return deptName;
     }
 
-    public void setdDeptName(String dName) {
+    public void setDeptName(String dName) {
         this.deptName = dName;
     }
 

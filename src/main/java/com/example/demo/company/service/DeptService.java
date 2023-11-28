@@ -30,7 +30,7 @@ public class DeptService {
 
     //新增部門
     public Dept add(Dept dept){
-        if(!checkDeptNo(dept) && !checkDName(dept)){
+        if(!checkDeptNo(dept) && !checkDeptName(dept)){
             return deptRepository.save(dept);
         }
         return null;
@@ -45,7 +45,7 @@ public class DeptService {
     public Dept update(Dept dept){
         Dept newDept = new Dept();
         dept.setDeptNo(dept.getDeptNo());
-        dept.setdDeptName(dept.getdDeptName());
+        dept.setDeptName(dept.getDeptName());
         dept.setLoc(dept.getLoc());
 
         return deptRepository.save(newDept);
@@ -58,8 +58,8 @@ public class DeptService {
         return existingDept.isPresent();
         }
 
-    public boolean checkDName(Dept dept) {
-        Optional<Dept> existingDept = deptRepository.findByDeptName(dept.getdDeptName());
+    public boolean checkDeptName(Dept dept) {
+        Optional<Dept> existingDept = deptRepository.findByDeptName(dept.getDeptName());
         return existingDept.isPresent();
     }
 }

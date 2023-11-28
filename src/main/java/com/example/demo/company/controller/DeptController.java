@@ -44,7 +44,7 @@ public class DeptController {
     @DeleteMapping("delete/{deptNo}")
     public ResponseEntity<Dept> delete(@PathVariable Integer deptNo){
         deptService.delete(deptNo);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //修改部門資料
