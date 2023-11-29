@@ -5,6 +5,7 @@ import com.example.demo.company.repository.DeptRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -42,24 +43,35 @@ public class DeptService {
     }
 
     //修改部門資料
+//  @Transactional(rollbackFor = {Exception.class, RuntimeException.class})
     public Dept update(Dept dept){
-        if(checkDeptNo(dept)){
-            dept.setDeptName(dept.getDeptName());
-            dept.setLoc(dept.getLoc());
-            return deptRepository.save(dept);
+        Optional<Dept> deptOptional = deptRepository.findByDeptNo(dept.getDeptNo());
+        if(!deptOptional.isPresent()){
+            return null;
         }
-        return null;
+        Dept dbDept = deptOptional.get();
+        dbDept.setDeptName(dept.getDeptName());
+        dbDept.setLoc(dept.getLoc());
+
+        return deptRepository.save(dbDept);
+//        //簡化的寫法
+//        return deptRepository.findByDeptNo(dept.getDeptNo())
+//                .map(deptDb -> setValueByDeptVo(dept,deptDb))
+//                .orElse(null);
+
     }
 
+//    private Dept setValueByDeptVo(Dept deptVo , Dept deptDb){
+//        deptDb.setDeptName(deptVo.getDeptName());
+//        deptDb.setLoc(deptVo.getLoc());
+//        return deptRepository.save(deptDb);
+//    }
 
-    public boolean checkDeptNo(Dept dept){
-        Optional<Dept> existingDept = deptRepository.findByDeptNo(dept.getDeptNo());
-        // 如果存在，返回true，否则返回false
-        return existingDept.isPresent();
-        }
+
 
     public boolean checkDeptName(Dept dept) {
         Optional<Dept> existingDept = deptRepository.findByDeptName(dept.getDeptName());
+        // 如果存在，返回true，否则返回false
         return existingDept.isPresent();
     }
 }
