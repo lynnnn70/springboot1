@@ -14,6 +14,7 @@ import java.util.List;
 @Controller
 @RequestMapping("web/dept")
 public class DeptWebController {
+
     @Autowired
     private DeptService deptService;
 
