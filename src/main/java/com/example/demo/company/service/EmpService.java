@@ -1,6 +1,8 @@
 package com.example.demo.company.service;
 
+import com.example.demo.company.entity.Dept;
 import com.example.demo.company.entity.Emp;
+import com.example.demo.company.repository.DeptRepository;
 import com.example.demo.company.repository.EmpRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class EmpService {
     @Autowired
     private EmpRepository empRepository;
 
+    @Autowired
+    private DeptRepository deptRepository;
+
     //查詢員工
     public List<Emp> listAll(){
         return empRepository.findAll();
@@ -26,10 +31,10 @@ public class EmpService {
 
     //新增員工
     public Emp add(Emp emp){
-//        Optional<Emp> deptNo = empRepository.findByDeptNo(emp.getDeptNo());
-//        if(!deptNo.isPresent()){
-//            return null;
-//        }
+        Optional<Dept> deptOptional = deptRepository.findByDeptNo(emp.getDeptNo());
+        if(!deptOptional.isPresent()){
+            return null;
+        }
         return empRepository.save(emp);
     }
 
