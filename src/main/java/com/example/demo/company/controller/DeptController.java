@@ -33,11 +33,10 @@ public class DeptController {
     public ResponseEntity<Optional<Dept>> listOne(@PathVariable Integer deptNo){
         return new ResponseEntity<>(deptService.listOne(deptNo), HttpStatus.OK);
     }
-
     //新增部門
     @PostMapping("add")
     public ResponseEntity<Dept> add(@RequestBody Dept dept){
-        return new ResponseEntity<>(deptService.add(dept), HttpStatus.OK);
+        return new ResponseEntity<>(deptService.add(dept), HttpStatus.CREATED);
     }
 
     //刪除部門

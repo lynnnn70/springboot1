@@ -15,7 +15,7 @@ public class Emp {
     private Integer empNo;
 
     @Column(name= "ENAME")
-    private String eName;
+    private String empName;
 
     @Column(name = "JOB")
     private String job;
@@ -40,12 +40,12 @@ public class Emp {
         this.empNo = empNo;
     }
 
-    public String geteName() {
-        return eName;
+    public String geteEmpName() {
+        return empName;
     }
 
-    public void seteName(String eName) {
-        this.eName = eName;
+    public void seteEmpName(String eName) {
+        this.empName = eName;
     }
 
     public String getJob() {
@@ -92,7 +92,7 @@ public class Emp {
     public String toString() {
         final StringBuilder sb = new StringBuilder(super.toString());
         sb.append("{empNo:").append(empNo);
-        sb.append(", eName:'").append(eName).append('\'');
+        sb.append(", eName:'").append(empName).append('\'');
         sb.append(", job:'").append(job).append('\'');
         sb.append(", hireDate:").append(hireDate);
         sb.append(", sal:").append(sal);

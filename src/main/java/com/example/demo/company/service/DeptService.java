@@ -30,7 +30,7 @@ public class DeptService {
 
     //新增部門
     public Dept add(Dept dept){
-        if(!checkDeptNo(dept) && !checkDeptName(dept)){
+        if(!checkDeptName(dept)){
             return deptRepository.save(dept);
         }
         return null;
@@ -43,12 +43,12 @@ public class DeptService {
 
     //修改部門資料
     public Dept update(Dept dept){
-        Dept newDept = new Dept();
-        dept.setDeptNo(dept.getDeptNo());
-        dept.setDeptName(dept.getDeptName());
-        dept.setLoc(dept.getLoc());
-
-        return deptRepository.save(newDept);
+        if(checkDeptNo(dept)){
+            dept.setDeptName(dept.getDeptName());
+            dept.setLoc(dept.getLoc());
+            return deptRepository.save(dept);
+        }
+        return null;
     }
 
 
