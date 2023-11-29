@@ -40,11 +40,11 @@ public class Emp {
         this.empNo = empNo;
     }
 
-    public String geteEmpName() {
+    public String getEmpName() {
         return empName;
     }
 
-    public void seteEmpName(String eName) {
+    public void setEmpName(String eName) {
         this.empName = eName;
     }
 

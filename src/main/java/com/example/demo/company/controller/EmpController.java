@@ -36,7 +36,7 @@ public class EmpController {
     }
 
     //刪除員工
-    @DeleteMapping("delete")
+    @DeleteMapping("delete/{empNo}")
     public ResponseEntity<Emp> delete(@PathVariable Integer empNo){
         empService.delete(empNo);
         return new ResponseEntity<>(HttpStatus.OK);

@@ -26,9 +26,10 @@ public class EmpService {
 
     //新增員工
     public Emp add(Emp emp){
-        if(checkEmpNo(emp)){
-            return null;
-        }
+//        Optional<Emp> deptNo = empRepository.findByDeptNo(emp.getDeptNo());
+//        if(!deptNo.isPresent()){
+//            return null;
+//        }
         return empRepository.save(emp);
     }
 
@@ -39,22 +40,20 @@ public class EmpService {
 
     //修改員工資訊
     public Emp update(Emp emp){
-        Optional<Emp> empOptional = empRepository.findById(emp.getEmpNo());
+        Optional<Emp> empOptional = empRepository.findByEmpNo(emp.getEmpNo());
         if(!empOptional.isPresent()){
            return null;
         }
         Emp dbemp = empOptional.get();
-        dbemp.seteEmpName(dbemp.geteEmpName());
-        dbemp.setJob(dbemp.getJob());
-        dbemp.setHireDate(dbemp.getHireDate());
-        dbemp.setSal(dbemp.getSal());
-        dbemp.setDeptNo(dbemp.getDeptNo());
-        return empRepository.save(dbemp);
+        dbemp.setEmpName(emp.getEmpName());
+        dbemp.setJob(emp.getJob());
+        dbemp.setHireDate(emp.getHireDate());
+        dbemp.setSal(emp.getSal());
+        dbemp.setComm(emp.getComm());
+        dbemp.setDeptNo(emp.getDeptNo());
+        return empRepository.save(emp);
     }
 
-    public boolean checkEmpNo(Emp emp){
-        Optional<Emp> existingEmpNo = empRepository.findById(emp.getEmpNo());
-        return existingEmpNo.isPresent();
-    }
+
 
 }
