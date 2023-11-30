@@ -1,6 +1,10 @@
 package com.example.demo.company.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "dept2")
@@ -16,6 +20,9 @@ public class Dept {
 
     @Column(name ="LOC")
     private String loc;
+   @OneToMany(mappedBy = "dept")
+   // @JsonManagedReference
+    private List<EmpFull> emps;
 
     public Integer getDeptNo() {
         return deptNo;
@@ -39,6 +46,14 @@ public class Dept {
 
     public void setLoc(String loc) {
         this.loc = loc;
+    }
+
+    public List<EmpFull> getEmps() {
+        return emps;
+    }
+
+    public void setEmps(List<EmpFull> emps) {
+        this.emps = emps;
     }
 
     @Override
