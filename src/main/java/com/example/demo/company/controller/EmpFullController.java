@@ -49,5 +49,11 @@ public class EmpFullController {
         return empFullRepository.findByHireDateAfter(hireDate);
     }
 
+    //以部門名稱&職位查詢相對應的員工
+    @GetMapping("listAllEmpByDeptNameAndJob/{deptName}/{job}")
+    public List<EmpFull> listAllEmpByDeptNameAndJob(@PathVariable String deptName, @PathVariable String job){
+        return empFullRepository.findEmpFullByDeptNameAndJob(deptName, job);
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.demo.company.repository;
 
+import com.example.demo.company.entity.Dept;
 import com.example.demo.company.entity.EmpFull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +14,7 @@ import java.util.List;
 @Repository
 public interface EmpFullRepository extends JpaRepository<EmpFull,Integer> {
 
-    @Query("SELECT e FROM EmpFull  e WHERE e.comm < :inputComm")
+    @Query("SELECT e FROM EmpFull e WHERE e.comm < :inputComm")
     List<EmpFull> queryEmpFullByCommLessThan(@Param("inputComm") BigDecimal inputComm);
 
     //查COMM小於傳入值的員工
@@ -37,5 +38,11 @@ public interface EmpFullRepository extends JpaRepository<EmpFull,Integer> {
     List<EmpFull> findByHireDateAfter(LocalDate hiredate);
 
 //    List<T> findAll(Specification<T> spec);
+
+    //以部門名稱&職位查詢相對應的員工
+    @Query("SELECT e FROM EmpFull e JOIN e.dept d WHERE d.deptName = :deptName AND e.job =:job")
+//    List<EmpFull> findEmpFullByDeptNameAndJob(@Param("inputDeptName")String deptName, String job);
+    List<EmpFull> findEmpFullByDeptNameAndJob(String deptName, String job);
+
 
 }
