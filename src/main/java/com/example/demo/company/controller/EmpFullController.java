@@ -36,13 +36,18 @@ public class EmpFullController {
         return empFullRepository.findByEmpNameIsNotContaining(empName);
     }
 
-
     //在方法參數上直接使用DateTimeFormat指定日期的格式，Spring會將傳遞的字串轉成LocalDate
     @GetMapping("listAllByHireDateBefore")
-    public List<EmpFull> listAllByHireDateBefore(@RequestParam("hireDate"
-    )                                            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate hireDate){
-
+    public List<EmpFull> listAllByHireDateBefore(@RequestParam("hireDate")
+                                                 @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate hireDate){
         return empFullRepository.findByHireDateBefore(hireDate);
     }
+
+    @GetMapping("listAllByHireDateAfter")
+    public List<EmpFull> listAllByHireDateAfter(@RequestParam("hireDate")
+                                                @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate hireDate){
+        return empFullRepository.findByHireDateAfter(hireDate);
+    }
+
 
 }

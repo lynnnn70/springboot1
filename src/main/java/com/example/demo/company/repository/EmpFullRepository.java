@@ -15,6 +15,7 @@ public interface EmpFullRepository extends JpaRepository<EmpFull,Integer> {
 
     @Query("SELECT e FROM EmpFull  e WHERE e.comm < :inputComm")
     List<EmpFull> queryEmpFullByCommLessThan(@Param("inputComm") BigDecimal inputComm);
+
     //查COMM小於傳入值的員工
     @Query(value = "SELECT * FROM emp2 e WHERE e.COMM < :inputComm", nativeQuery = true)
     List<EmpFull> findByCommLessThan(@Param("inputComm") BigDecimal inputComm);
@@ -22,13 +23,19 @@ public interface EmpFullRepository extends JpaRepository<EmpFull,Integer> {
     //查SAL大於傳入值的員工
     @Query(value = "SELECT * FROM emp2 e WHERE e.SAL > :inputSal", nativeQuery = true)
     List<EmpFull> findBySalGreaterThan(@Param("inputSal") BigDecimal inputSal);
+
     //查包含傳入值的員工
     List<EmpFull> findByEmpNameContaining(String empName);
+
     //查不包含傳入值的員工
     List<EmpFull> findByEmpNameIsNotContaining(String empName);
 
+    //查入值日期在傳入值之前
     List<EmpFull> findByHireDateBefore(LocalDate hiredate);
 
+    //查入值日期在傳入值之後
     List<EmpFull> findByHireDateAfter(LocalDate hiredate);
+
+//    List<T> findAll(Specification<T> spec);
 
 }
