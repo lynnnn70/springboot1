@@ -25,6 +25,7 @@ public class DeptWebController {
         model.addAttribute("deptDOs" , depts);
 
         return "company/deptListAll";
-
     }
+
+
 }
