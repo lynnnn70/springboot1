@@ -2,6 +2,7 @@ package com.example.demo.company.controller;
 
 import com.example.demo.company.entity.Emp;
 import com.example.demo.company.service.EmpService;
+import net.bytebuddy.dynamic.DynamicType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +26,38 @@ public class EmpController {
 
     //查詢單一員工
     @GetMapping("listOne/{empNo}")
-    public ResponseEntity<Optional<Emp>> listOne(@PathVariable Integer empNo){
-        return new ResponseEntity<>(empService.listOne(empNo),HttpStatus.OK);
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    public ResponseEntity<Emp> listOne(@PathVariable Integer empNo){
+//        return new ResponseEntity<>(empService.listOne(empNo),HttpStatus.BAD_REQUEST);
+        //1
+//        Optional<Emp> emp = empService.listOne(empNo);
+//        if(emp.isPresent()){
+//            Emp emp1 = emp.get();
+//            return new ResponseEntity<>(emp1 , HttpStatus.OK);
+//        }else{
+//            return new ResponseEntity<>(null , HttpStatus.NOT_FOUND);
+//        }
+        // 2
+//        Emp emp = empService.listOne1(empNo);
+//        if(emp == null){
+//            return new ResponseEntity<>(null , HttpStatus.NOT_FOUND);
+//        }else{
+//            return new ResponseEntity<>(emp , HttpStatus.OK);
+//        }
+
+        // 3
+        return  empService.listOne(empNo)
+                .map(emp -> new ResponseEntity<>(emp , HttpStatus.OK))
+                .orElse( new ResponseEntity<>(null , HttpStatus.NOT_FOUND));
+
+
     }
+
+    //controller職責
+    // 輸入參數的驗證
+    // 請求的轉發(service) => null
+    // 請求結果的包裝
+    // 回傳請求結果
 
     //新增員工
     @PostMapping("add")
@@ -46,6 +76,11 @@ public class EmpController {
     @PutMapping("update")
     public ResponseEntity<Emp> update (@RequestBody Emp emp){
         return new ResponseEntity<>(empService.update(emp),HttpStatus.OK);
+    }
+
+
+    public Object test(Object object){
+        return object;
     }
 
 

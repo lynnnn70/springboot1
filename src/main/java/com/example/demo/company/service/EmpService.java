@@ -28,6 +28,9 @@ public class EmpService {
     public Optional<Emp> listOne(Integer empNo){
         return empRepository.findById(empNo);
     }
+    public Emp listOne1(Integer empNo){
+        return empRepository.findById(empNo).orElse(null);
+    }
 
     //新增員工
     public Emp add(Emp emp){
