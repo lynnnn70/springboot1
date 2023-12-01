@@ -48,7 +48,7 @@ public class EmpController {
         // 3
         return  empService.listOne(empNo)
                 .map(emp -> new ResponseEntity<>(emp , HttpStatus.OK))
-                .orElse( new ResponseEntity<>(null , HttpStatus.NOT_FOUND));
+                .orElse(new ResponseEntity<>(null , HttpStatus.NOT_FOUND));
 
 
     }
